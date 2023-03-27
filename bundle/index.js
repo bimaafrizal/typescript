@@ -23,6 +23,10 @@ temanKita = {
     hutang: 0,
     isKampret: true
 };
+let sayaData;
+//datanya bisa jadi string dan number karena typenya bersifat string atau number
+sayaData = 1;
+sayaData = "aadasfafdfdsfa";
 console.log(namaSaya);
 //perbedaan dari atas bawah dan atas terlihat ketika running, yang bawah hasilnya ada nama variael
 console.log({ username });

@@ -35,6 +35,19 @@ temanKita = {
     isKampret:true
 };
 
+//union custom
+type data1 = string;
+type data2 = number;
+
+type semuaData = data1 | data2;
+
+let sayaData : semuaData;
+
+//datanya bisa jadi string dan number karena typenya bersifat string atau number
+sayaData = 1;
+sayaData = "aadasfafdfdsfa";
+
+
 console.log(namaSaya);
 //perbedaan dari atas bawah dan atas terlihat ketika running, yang bawah hasilnya ada nama variael
 console.log({username});
