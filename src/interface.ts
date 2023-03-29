@@ -64,3 +64,140 @@ const amdRyzen3: Amd = {
 
 createIntel(intelCoreI5);
 createAmd(amdRyzen3);
+
+
+//interface extends class
+class Animal {
+    constructor(public name : string) {}
+}
+
+interface IShark extends Animal {
+    swim() :void;
+}
+
+class Shark implements IShark{
+
+    constructor(public name : string){}
+
+    swim(): void {
+        console.log('Awiwkwkwkwk');
+    }
+}
+
+//dependency injection
+//mnginjek class ke class lain secara dinamis
+class Store {
+    private name: string = 'Store A';
+    private profit: number = 1000;
+
+    getName() : string {
+        return this.name;
+    }
+
+    getProfit() : number {
+        return this.profit;
+    }
+}
+class Store2 {
+    private name: string = 'Store 2';
+    private profit: number = 10000;
+
+    getName() : string {
+        return this.name;
+    }
+
+    getProfit() : number {
+        return this.profit;
+    }
+}
+
+class FashionProduct {
+    private store : Store;
+
+    constructor(private name: string, private price: number) {
+        this.store = new Store();
+    }
+
+    sell() : void {
+        console.log(`${this.name} harga jualnya adalah ${this.store.getProfit() + this.price}`)
+    }
+}
+class TechProduct {
+    private store : Store;
+
+    constructor(private name: string, private price: number) {
+        this.store = new Store();
+    }
+
+    sell() : void {
+        console.log(`${this.name} harga jualnya adalah ${this.store.getProfit() + this.price}`)
+    }
+}
+
+const baju = new FashionProduct('Baju lengan panjang', 50000);
+baju.sell();
+
+//dependency
+
+interface IStore {
+    name: string;
+    profit: number;
+    getProfit(): number;
+}
+
+class TokoLama implements IStore {
+    name: string = 'Toko Baru';
+    profit: number= 2500;
+
+    getName() : string {
+        return this.name;
+    }
+
+    getProfit(): number {
+        return this.profit;
+    }
+}
+
+class TokoBaru implements IStore {
+    name: string = 'Toko Baru';
+    profit: number= 2500;
+
+    getName() : string {
+        return this.name;
+    }
+
+    getProfit(): number {
+        return this.profit;
+    }
+}
+
+class HijabProduct {
+
+    constructor(private store : IStore, private name: string, private price: number) {
+    }
+
+    sell() : void {
+        console.log(`${this.name} harga jualnya adalah ${this.store.getProfit() + this.price}`)
+    }
+}
+class FoodProduct {
+
+    constructor(private store : IStore, private name: string, private price: number) {
+    }
+
+    sell() : void {
+        console.log(`${this.name} harga jualnya adalah ${this.store.getProfit() + this.price}`)
+    }
+}
+
+const tokoLama = new TokoLama();
+const tokoBaru = new TokoBaru();
+
+const hijab = new HijabProduct(tokoLama, 'hijab mahal', 80000);
+const hijabMahal = new HijabProduct(tokoLama, 'hijab lebih mahal', 80000);
+
+console.log(hijab);
+console.log(hijabMahal);
+
+hijab.sell();
+hijabMahal.sell();
